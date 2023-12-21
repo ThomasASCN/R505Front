@@ -9,13 +9,15 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
     ProfilComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    LoginComponent
   
   ],
   imports: [
