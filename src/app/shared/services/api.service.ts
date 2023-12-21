@@ -123,6 +123,6 @@ export class ApiService {
 
   inscription(userData: any) {
     // Utilisez HttpClient pour envoyer une requête POST vers l'API Laravel pour l'inscription
-    return this.requestApi('/co', 'POST', userData);
+    return this.requestApi('/register', 'POST', userData);
   }
 }
