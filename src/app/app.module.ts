@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
