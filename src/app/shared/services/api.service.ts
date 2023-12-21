@@ -101,28 +101,35 @@ export class ApiService {
   }
 
   // Enregistre le token dans le localstorage et dans la variable token
-  savTokens(apiToken: string){
-
-   
-   
+  savTokens(apiToken: string) {
     this.token = apiToken;
-
+    localStorage.setItem('apiToken', JSON.stringify({ token: apiToken }));
   }
+  
 
   // Vérifie si l'utilisateur est connecté
   isLogged(): boolean{
     return this.token !== undefined;
   }
 
-  // Déconnecte l'utilisateur
-  logout(){
-   
-    this.token = undefined;
+  logout() {
+    this.requestApi('/logout', 'POST').then(() => {
+      this.token = undefined;
+      localStorage.removeItem('apiToken');
+      this.router.navigate(['/login']); // Rediriger vers la page de connexion
+    }).catch(error => {
+      console.error('Erreur lors de la déconnexion', error);
+    });
   }
+  
 
 
   inscription(userData: any) {
     // Utilisez HttpClient pour envoyer une requête POST vers l'API Laravel pour l'inscription
     return this.requestApi('/register', 'POST', userData);
   }
+  login(loginData: any) {
+    return this.requestApi('/login', 'POST', loginData);
+  }
+
 }
