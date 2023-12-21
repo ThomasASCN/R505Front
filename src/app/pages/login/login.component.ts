@@ -25,7 +25,7 @@ export class LoginComponent {
       this.apiService.login(loginData).then(
         response => {
           this.apiService.savTokens(response.token);
-          this.router.navigate(['/home']); 
+          this.router.navigate(['/']); 
         },
         error => {
           console.error('Erreur lors de la connexion', error);
