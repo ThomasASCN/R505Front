@@ -10,6 +10,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { ProfilComponent } from './pages/profil/profil.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginComponent } from './pages/login/login.component';
     AccueilComponent,
     ProfilComponent,
     InscriptionComponent,
-    LoginComponent
+    LoginComponent,
+    TicketComponent
   
   ],
   imports: [
