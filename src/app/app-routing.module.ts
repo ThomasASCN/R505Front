@@ -5,6 +5,7 @@ import { ProfilComponent } from './pages/profil/profil.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { TicketComponent } from './pages/ticket/ticket.component';
 
 
 
@@ -12,6 +13,7 @@ const routes: Routes = [
 { path :'', component: InscriptionComponent},
 { path: 'login', component: LoginComponent},
 { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
+{ path: 'ticket', component: TicketComponent},
 
 
 ];

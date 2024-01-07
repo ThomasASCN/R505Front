@@ -1,1 +1,50 @@
-<p>ticket works!</p>
+<form [formGroup]="adForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="title">Titre:</label>
+      <input type="text" formControlName="title">
+      <div *ngIf="adForm.get('title')?.touched && adForm.get('title')?.errors">
+        <div *ngIf="adForm.get('title')?.errors?.['required']">Le titre est requis.</div>
+      </div>
+    </div>
+  
+    <div>
+        <label for="game_id">Nom du Jeu:</label>
+        <select formControlName="game_id">
+          <option value="" disabled>Sélectionnez un jeu</option>
+          <option *ngFor="let game of games" [value]="game.id">{{ game.name }}</option>
+        </select>
+        <div *ngIf="adForm.get('game_id')?.touched && adForm.get('game_id')?.errors">
+          <div *ngIf="adForm.get('game_id')?.errors?.['required']">Le choix du jeu est requis.</div>
+        </div>
+      </div>
+    <div>
+      <label for="description">Description:</label>
+      <textarea formControlName="description"></textarea>
+      <div *ngIf="adForm.get('description')?.touched && adForm.get('description')?.errors">
+        <div *ngIf="adForm.get('description')?.errors?.['required']">Une description est requise.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="start_date">Date de début:</label>
+      <input type="date" formControlName="start_date">
+      <div *ngIf="adForm.get('start_date')?.touched && adForm.get('start_date')?.errors">
+        <div *ngIf="adForm.get('start_date')?.errors?.['required']">La date de début est requise.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="end_date">Date de fin:</label>
+      <input type="date" formControlName="end_date">
+      <div *ngIf="adForm.get('end_date')?.touched && adForm.get('end_date')?.errors">
+        <div *ngIf="adForm.get('end_date')?.errors?.['required']">La date de fin est requise.</div>
+      </div>
+    </div>
+  
+    <button type="submit">Créer l'annonce</button>
+  
+    <div *ngIf="message" [class.error]="isError">
+      {{ message }}
+    </div>
+  </form>
+  
