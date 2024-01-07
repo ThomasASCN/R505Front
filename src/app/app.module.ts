@@ -11,6 +11,7 @@ import { ProfilComponent } from './pages/profil/profil.component';
 import { InscriptionComponent } from './pages/inscription/inscription.component';
 import { LoginComponent } from './pages/login/login.component';
 import { TicketComponent } from './pages/ticket/ticket.component';
+import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TicketComponent } from './pages/ticket/ticket.component';
     ProfilComponent,
     InscriptionComponent,
     LoginComponent,
-    TicketComponent
+    TicketComponent,
+    TicketPageComponent
   
   ],
   imports: [
