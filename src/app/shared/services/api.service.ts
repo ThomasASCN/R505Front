@@ -132,4 +132,10 @@ export class ApiService {
     return this.requestApi('/login', 'POST', loginData);
   }
 
+ createAd(adData: any): Promise<any> {
+    return this.requestApi('/ads', 'POST', adData);
+  }
+  getGames(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/games`);
+  }
 }
