@@ -17,4 +17,27 @@ export class TicketPageComponent implements OnInit {
       this.ads = data;
     });
   }
+
+  
+  validateAd(adId: number) {
+    this.apiService.validateAd(adId).subscribe({
+      next: (response) => {
+        // Rafraîchir la liste des annonces après la validation
+        this.refreshAds();
+        alert(response.message);
+      },
+      error: (error) => {
+        alert(error.error.message);
+      }
+    });
+  }
+  
+  refreshAds() {
+    this.apiService.getValidAds().subscribe(data => {
+      this.ads = data;
+    });
+  }
+  
 }
+
+

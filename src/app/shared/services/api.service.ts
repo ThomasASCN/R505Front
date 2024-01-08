@@ -145,4 +145,13 @@ export class ApiService {
   getValidAds(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/valid-ads`);
   }
+// valider une annonce 
+validateAd(adId: number): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+  return this.http.post<any>(`${this.apiUrl}/ads/${adId}/validate`, {}, { headers });
+}
+
+  
 }
