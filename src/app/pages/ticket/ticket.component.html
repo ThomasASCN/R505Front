@@ -1,3 +1,5 @@
+
+
 <form [formGroup]="adForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="title">Titre:</label>
@@ -26,20 +28,21 @@
     </div>
   
     <div>
-      <label for="start_date">Date de début:</label>
-      <input type="date" formControlName="start_date">
-      <div *ngIf="adForm.get('start_date')?.touched && adForm.get('start_date')?.errors">
-        <div *ngIf="adForm.get('start_date')?.errors?.['required']">La date de début est requise.</div>
+        <label for="start_date">Date de début:</label>
+        <input type="datetime-local" formControlName="start_date">
+        <div *ngIf="adForm.get('start_date')?.touched && adForm.get('start_date')?.errors">
+          <div *ngIf="adForm.get('start_date')?.errors?.['required']">La date de début est requise.</div>
+        </div>
       </div>
-    </div>
-  
-    <div>
-      <label for="end_date">Date de fin:</label>
-      <input type="date" formControlName="end_date">
-      <div *ngIf="adForm.get('end_date')?.touched && adForm.get('end_date')?.errors">
-        <div *ngIf="adForm.get('end_date')?.errors?.['required']">La date de fin est requise.</div>
+      
+      <div>
+        <label for="end_date">Date de fin:</label>
+        <input type="datetime-local" formControlName="end_date">
+        <div *ngIf="adForm.get('end_date')?.touched && adForm.get('end_date')?.errors">
+          <div *ngIf="adForm.get('end_date')?.errors?.['required']">La date de fin est requise.</div>
+        </div>
       </div>
-    </div>
+      
   
     <button type="submit">Créer l'annonce</button>
   
