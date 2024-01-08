@@ -128,14 +128,21 @@ export class ApiService {
     // Utilisez HttpClient pour envoyer une requête POST vers l'API Laravel pour l'inscription
     return this.requestApi('/register', 'POST', userData);
   }
+
+// se connecter 
   login(loginData: any) {
     return this.requestApi('/login', 'POST', loginData);
   }
-
+// créer une annonce
  createAd(adData: any): Promise<any> {
     return this.requestApi('/ads', 'POST', adData);
   }
+  // récupérer les jeux
   getGames(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/games`);
+  }
+  // récupérer les annonces dont les dates sont valides
+  getValidAds(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/valid-ads`);
   }
 }
