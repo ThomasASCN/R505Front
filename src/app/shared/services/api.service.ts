@@ -152,6 +152,30 @@ validateAd(adId: number): Observable<any> {
   });
   return this.http.post<any>(`${this.apiUrl}/ads/${adId}/validate`, {}, { headers });
 }
+// les annonces acceptées
+getAcceptedAds(): Observable<any[]> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+
+  return this.http.get<any[]>(`${this.apiUrl}/accepted-ads`, { headers: headers });
+}
+// les annonces postées 
+getPostedAds(): Observable<any[]> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+
+  return this.http.get<any[]>(`${this.apiUrl}/posted-ads`, { headers: headers });
+}
+// annuler la validation d'une annonce
+unvalidateAd(adId: number): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token 
+  });
+
+  return this.http.post(`${this.apiUrl}/ads/${adId}/unvalidate`, {}, { headers });
+}
 
   
 }
