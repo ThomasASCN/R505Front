@@ -184,6 +184,32 @@ finalizeAdValidation(adId: number, isValid: boolean): Observable<any> {
 
   return this.http.post(`${this.apiUrl}/ads/${adId}/finalize-validation`, { is_valid: isValid }, { headers });
 }
+// Annonces doublement validées
+
+getDoubleValidatedAds(): Observable<any> {
+  return this.http.get(`${this.apiUrl}/double-validated-ads`, {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    })
+  });
+}
+// Suppression de la double validation finale 
+
+unfinalizeAdValidation(adId: number): Observable<any> {
+  return this.http.post(`${this.apiUrl}/ads/${adId}/unfinalize-validation`, {}, {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    })
+  });
+}
+// Suppression d'une annonce par l'utilisateur si elle n'est pas validé du tout
+deleteAd(adId: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/ads/${adId}`, {
+      headers: new HttpHeaders({
+          'Authorization': 'Bearer ' + this.token
+      })
+  });
+}
 
   
 }

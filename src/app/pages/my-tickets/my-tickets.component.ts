@@ -11,6 +11,7 @@ import { ApiService } from '../../shared/services/api.service';
 export class MyTicketsComponent implements OnInit {
   acceptedAds: any[] = [];
   postedAds: any[] = [];
+  doubleValidatedAds: any[] = [];
 
   constructor(private apiService: ApiService) {}
 
@@ -22,6 +23,11 @@ export class MyTicketsComponent implements OnInit {
     this.apiService.getPostedAds().subscribe(data => {
       this.postedAds = data;
     });
+   
+      this.apiService.getDoubleValidatedAds().subscribe(ads => {
+        this.doubleValidatedAds = ads;
+      });
+    
   }
 
 unvalidateAd(adId: number) {
@@ -47,5 +53,33 @@ finalizeAdValidation(adId: number, isValid: boolean) {
     }
   });
 }
+
+
+removeDoubleValidation(adId: number) {
+  this.apiService.unfinalizeAdValidation(adId).subscribe({
+    next: response => {
+
+      console.log(response.message);
+ 
+    },
+    error: error => {
+   
+      console.error(error);
+    }
+  });
+}
+
+deleteAd(adId: number) {
+  this.apiService.deleteAd(adId).subscribe({
+      next: response => {
+          console.log(response.message);
+     
+      },
+      error: error => {
+          console.error('Erreur lors de la suppression de l\'annonce', error);
+      }
+  });
+}
+
 
 }
