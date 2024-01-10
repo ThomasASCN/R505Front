@@ -152,6 +152,64 @@ validateAd(adId: number): Observable<any> {
   });
   return this.http.post<any>(`${this.apiUrl}/ads/${adId}/validate`, {}, { headers });
 }
+// les annonces acceptées
+getAcceptedAds(): Observable<any[]> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+
+  return this.http.get<any[]>(`${this.apiUrl}/accepted-ads`, { headers: headers });
+}
+// les annonces postées 
+getPostedAds(): Observable<any[]> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+
+  return this.http.get<any[]>(`${this.apiUrl}/posted-ads`, { headers: headers });
+}
+// annuler la validation d'une annonce
+unvalidateAd(adId: number): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token 
+  });
+
+  return this.http.post(`${this.apiUrl}/ads/${adId}/unvalidate`, {}, { headers });
+}
+// Validation finale d'une annonce validé
+finalizeAdValidation(adId: number, isValid: boolean): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token 
+  });
+
+  return this.http.post(`${this.apiUrl}/ads/${adId}/finalize-validation`, { is_valid: isValid }, { headers });
+}
+// Annonces doublement validées
+
+getDoubleValidatedAds(): Observable<any> {
+  return this.http.get(`${this.apiUrl}/double-validated-ads`, {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    })
+  });
+}
+// Suppression de la double validation finale 
+
+unfinalizeAdValidation(adId: number): Observable<any> {
+  return this.http.post(`${this.apiUrl}/ads/${adId}/unfinalize-validation`, {}, {
+    headers: new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    })
+  });
+}
+// Suppression d'une annonce par l'utilisateur si elle n'est pas validé du tout
+deleteAd(adId: number): Observable<any> {
+  return this.http.delete(`${this.apiUrl}/ads/${adId}`, {
+      headers: new HttpHeaders({
+          'Authorization': 'Bearer ' + this.token
+      })
+  });
+}
 
   
 }

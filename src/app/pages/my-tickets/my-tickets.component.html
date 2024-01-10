@@ -1,1 +1,56 @@
-<p>my-tickets works!</p>
+<h2 class="text-2xl font-bold mb-4">Mes Annonces Acceptées</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div *ngFor="let ad of acceptedAds" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+    <h3 class="text-lg font-semibold mb-2">{{ ad.title }}</h3>
+    <h3 class="text-lg font-semibold mb-2">{{ ad.title }}</h3>
+    <p class="text-sm text-gray-600 mb-1">Jeu: {{ ad.game?.name }}</p>
+    <p class="text-sm text-gray-600 mb-1">Description: {{ ad.description }}</p>
+    <p class="text-sm text-gray-600 mb-1">Date de début: {{ ad.start_date | date: 'medium' }}</p>
+    <p class="text-sm text-gray-600 mb-1">Date de fin: {{ ad.end_date | date: 'medium' }}</p>
+    <p class="text-sm text-gray-600 mb-1">Créateur: {{ ad.user?.name }}</p>
+    <div *ngFor="let user of ad.acceptedByUsers" class="mb-2">
+      <p class="text-sm text-gray-600">Accepté par: {{ user.name }}</p>
+    </div>
+    <button (click)="unvalidateAd(ad.id)" class="bg-red-500 text-white rounded px-4 py-2 mt-2 hover:bg-red-600 transition-colors duration-300">Supprimer la validation</button>
+  </div>
+</div>
+
+
+
+
+  
+<h2 class="text-2xl font-bold mb-4">Mes Annonces Postées</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div *ngFor="let ad of postedAds" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+    <h3 class="text-lg font-semibold mb-2">{{ ad.title }}</h3>
+    <p class="text-sm text-gray-600 mb-1">Jeu: {{ ad.game?.name }}</p>
+    <p class="text-sm text-gray-600 mb-1">Description: {{ ad.description }}</p>
+    <p class="text-sm text-gray-600 mb-1">Date de début: {{ ad.start_date | date: 'medium' }}</p>
+    <p class="text-sm text-gray-600 mb-1">Date de fin: {{ ad.end_date | date: 'medium' }}</p>
+    
+    <p class="text-sm text-gray-600">Validée par: <span *ngFor="let validator of ad.validators">{{ validator }}</span></p>
+    <div>
+    <div class="flex flex-col space-y-2 mt-2">
+      <button *ngIf="!ad.is_valid && ad.is_user_validated" (click)="finalizeAdValidation(ad.id, true)" class="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition-colors duration-300">Valider l'annonce</button>
+      <button *ngIf="!ad.is_valid && ad.is_user_validated" (click)="finalizeAdValidation(ad.id, false)" class="bg-red-500 text-white rounded px-4 py-2 hover:bg-red-600 transition-colors duration-300">Ne pas valider l'annonce</button>
+      <button *ngIf="!ad.is_valid && !ad.is_user_validated" (click)="deleteAd(ad.id)" class="bg-red-500 text-white rounded px-4 py-2 hover:bg-red-600 transition-colors duration-300">Supprimer l'annonce</button>
+
+    
+    </div>
+  </div>
+</div>
+</div>
+
+
+<h2 class="text-2xl font-bold mb-4">Mes rendez-vous</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div *ngFor="let ad of doubleValidatedAds" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
+    <h3 class="text-lg font-semibold mb-2">{{ ad.title }}</h3>
+    <p class="text-sm text-gray-600 mb-1">Jeu: {{ ad.game?.name }}</p>
+    <p class="text-sm text-gray-600 mb-1">Description: {{ ad.description }}</p>
+    <p class="text-sm text-gray-600 mb-1">Date de début: {{ ad.start_date | date: 'medium' }}</p>
+    <p class="text-sm text-gray-600 mb-1">Date de fin: {{ ad.end_date | date: 'medium' }}</p>
+    <button (click)="removeDoubleValidation(ad.id)" class="bg-yellow-500 text-white rounded px-4 py-2 mt-2 hover:bg-yellow-600 transition-colors duration-300">Supprimer la Double Validation</button>
+  </div>
+</div>
+  
