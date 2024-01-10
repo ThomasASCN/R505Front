@@ -25,6 +25,22 @@
     <p class="text-sm text-gray-600 mb-1">Description: {{ ad.description }}</p>
     <p class="text-sm text-gray-600 mb-1">Date de début: {{ ad.start_date | date: 'medium' }}</p>
     <p class="text-sm text-gray-600 mb-1">Date de fin: {{ ad.end_date | date: 'medium' }}</p>
+    
     <p class="text-sm text-gray-600">Validée par: <span *ngFor="let validator of ad.validators">{{ validator }}</span></p>
-  </div>
+    <div>
+   
+        <button *ngIf="!ad.is_valid && ad.is_user_validated" (click)="finalizeAdValidation(ad.id, true)">Valider l'annonce</button>
+        <button *ngIf="!ad.is_valid && ad.is_user_validated" (click)="finalizeAdValidation(ad.id, false)">Supprimer l'annonce</button>
+
+       
 </div>
+</div>
+</div>
+
+<div *ngFor="let ad of postedAds" class="bg-white rounded-lg shadow-md p-4">
+    <h3>{{ ad.title }}</h3>
+    <!-- autres détails de l'annonce -->
+    <button *ngIf="!ad.is_valid && ad.is_user_validated" (click)="finalizeAdValidation(ad.id, true)">Valider l'annonce</button>
+    <button *ngIf="ad.is_valid" (click)="finalizeAdValidation(ad.id, false)">Invalider l'annonce</button>
+  </div>
+  

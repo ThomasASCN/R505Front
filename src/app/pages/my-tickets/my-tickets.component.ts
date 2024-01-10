@@ -34,4 +34,18 @@ unvalidateAd(adId: number) {
     }
   });
 }
+
+
+finalizeAdValidation(adId: number, isValid: boolean) {
+  
+  this.apiService.finalizeAdValidation(adId, isValid).subscribe({
+    next: (response) => {
+      console.log(response.message);
+    },
+    error: (err) => {
+      console.error('Erreur lors de la validation de l\'annonce:', err);
+    }
+  });
+}
+
 }

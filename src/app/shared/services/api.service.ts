@@ -176,6 +176,14 @@ unvalidateAd(adId: number): Observable<any> {
 
   return this.http.post(`${this.apiUrl}/ads/${adId}/unvalidate`, {}, { headers });
 }
+// Validation finale d'une annonce validé
+finalizeAdValidation(adId: number, isValid: boolean): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token 
+  });
+
+  return this.http.post(`${this.apiUrl}/ads/${adId}/finalize-validation`, { is_valid: isValid }, { headers });
+}
 
   
 }
