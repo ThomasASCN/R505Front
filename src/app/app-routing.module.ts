@@ -8,6 +8,7 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { TicketComponent } from './pages/ticket/ticket.component';
 import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
 import { MyTicketsComponent } from './pages/my-tickets/my-tickets.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
 { path: 'ticket', component: TicketComponent},
 { path: 'tickets', component: TicketPageComponent},
 { path: 'mytickets', component: MyTicketsComponent}, 
+{ path: 'menu', component: MenuComponent},
 
 
 ];
