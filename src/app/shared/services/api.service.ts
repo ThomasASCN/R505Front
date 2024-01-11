@@ -6,6 +6,8 @@ import {Subject} from "rxjs";
 import {Router} from "@angular/router";
 import { Observable } from 'rxjs';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -112,14 +114,33 @@ export class ApiService {
     return this.token !== undefined;
   }
 
-  logout() {
-    this.requestApi('/logout', 'POST').then(() => {
-      this.token = undefined;
-      localStorage.removeItem('apiToken');
-      this.router.navigate(['/login']); // Rediriger vers la page de connexion
-    }).catch(error => {
-      console.error('Erreur lors de la déconnexion', error);
+  // logout
+  logout(): Promise<void> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
     });
+  
+    return new Promise<void>((resolve, reject) => {
+      this.http.post(`${this.apiUrl}/logout`, {}, { headers }).subscribe({
+        next: () => {
+          localStorage.removeItem('apiToken'); 
+          this.token = undefined;
+          resolve(); 
+        },
+        error: (error: any) => { 
+          console.error('Erreur lors de la déconnexion', error);
+          reject(error);
+        }
+      });
+    });
+  }
+  
+  
+  
+
+  private getToken(): string | null {
+    // Retourner le jeton stocké localement, si présent
+    return localStorage.getItem('apiToken');
   }
   
 
@@ -210,6 +231,5 @@ deleteAd(adId: number): Observable<any> {
       })
   });
 }
-
-  
+ 
 }

@@ -1,17 +1,40 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthGuard } from './auth.guard';
+import { ApiService } from '../../shared/services/api.service';
+import { Router } from '@angular/router';
 
-import { authGuard } from './auth.guard';
-
-describe('authGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+describe('AuthGuard', () => {
+  let guard: AuthGuard;
+  let apiService: ApiService;
+  let router: Router;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes([])],
+      providers: [
+        AuthGuard,
+        { provide: ApiService, useValue: { isLogged: () => true } }
+      ]
+    });
+    guard = TestBed.inject(AuthGuard);
+    apiService = TestBed.inject(ApiService);
+    router = TestBed.inject(Router);
   });
 
   it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+    expect(guard).toBeTruthy();
+  });
+
+  it('should allow the authenticated user to access app', () => {
+    spyOn(apiService, 'isLogged').and.returnValue(true);
+    expect(guard.canActivate()).toBeTrue();
+  });
+
+  it('should not allow the unauthenticated user to access app and redirect to login', () => {
+    spyOn(apiService, 'isLogged').and.returnValue(false);
+    const navigateSpy = spyOn(router, 'navigate');
+    expect(guard.canActivate()).toBeFalse();
+    expect(navigateSpy).toHaveBeenCalledWith(['/login']);
   });
 });
