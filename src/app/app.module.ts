@@ -13,7 +13,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { TicketComponent } from './pages/ticket/ticket.component';
 import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
 import { MyTicketsComponent } from './pages/my-tickets/my-tickets.component';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './pages/menu/menu.component';
 
 @NgModule({
   declarations: [
