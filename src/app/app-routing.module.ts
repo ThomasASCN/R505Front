@@ -16,9 +16,9 @@ const routes: Routes = [
 { path :'', component: InscriptionComponent},
 { path: 'login', component: LoginComponent},
 { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
-{ path: 'ticket', component: TicketComponent},
-{ path: 'tickets', component: TicketPageComponent},
-{ path: 'mytickets', component: MyTicketsComponent}, 
+{ path: 'ticket', component: TicketComponent, canActivate: [AuthGuard]},
+{ path: 'tickets', component: TicketPageComponent, canActivate: [AuthGuard]},
+{ path: 'mytickets', component: MyTicketsComponent, canActivate: [AuthGuard]}, 
 { path: 'menu', component: MenuComponent},
 
 
