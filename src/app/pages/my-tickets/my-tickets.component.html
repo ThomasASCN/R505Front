@@ -1,8 +1,10 @@
+
 <app-menu></app-menu>
+<div class="ml-8">
+  <br>
 <h2 class="text-2xl font-bold mb-4">Mes Annonces Acceptées</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
   <div *ngFor="let ad of acceptedAds" class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow duration-300">
-    <h3 class="text-lg font-semibold mb-2">{{ ad.title }}</h3>
     <h3 class="text-lg font-semibold mb-2">{{ ad.title }}</h3>
     <p class="text-sm text-gray-600 mb-1">Jeu: {{ ad.game?.name }}</p>
     <p class="text-sm text-gray-600 mb-1">Description: {{ ad.description }}</p>
@@ -55,3 +57,4 @@
   </div>
 </div>
   
+</div>
