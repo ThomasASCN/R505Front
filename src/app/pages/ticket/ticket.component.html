@@ -1,52 +1,53 @@
 <app-menu></app-menu>
-<form [formGroup]="adForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="title">Titre:</label>
-      <input type="text" formControlName="title">
-      <div *ngIf="adForm.get('title')?.touched && adForm.get('title')?.errors">
-        <div *ngIf="adForm.get('title')?.errors?.['required']">Le titre est requis.</div>
-      </div>
+<br>
+<form [formGroup]="adForm" (ngSubmit)="onSubmit()" class="max-w-md mx-auto p-4 shadow-lg rounded-lg bg-white">
+  <p class="block text-gray-700 text-sm font-bold mb-2"> Créer un ticket</p>
+  <div class="mb-4">
+    <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
+    <input type="text" formControlName="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    <div *ngIf="adForm.get('title')?.touched && adForm.get('title')?.errors" class="text-red-500 text-xs italic">
+      <div *ngIf="adForm.get('title')?.errors?.['required']">Le titre est requis.</div>
     </div>
-  
-    <div>
-        <label for="game_id">Nom du Jeu:</label>
-        <select formControlName="game_id">
-          <option value="" disabled>Sélectionnez un jeu</option>
-          <option *ngFor="let game of games" [value]="game.id">{{ game.name }}</option>
-        </select>
-        <div *ngIf="adForm.get('game_id')?.touched && adForm.get('game_id')?.errors">
-          <div *ngIf="adForm.get('game_id')?.errors?.['required']">Le choix du jeu est requis.</div>
-        </div>
-      </div>
-    <div>
-      <label for="description">Description:</label>
-      <textarea formControlName="description"></textarea>
-      <div *ngIf="adForm.get('description')?.touched && adForm.get('description')?.errors">
-        <div *ngIf="adForm.get('description')?.errors?.['required']">Une description est requise.</div>
-      </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="game_id" class="block text-gray-700 text-sm font-bold mb-2">Nom du Jeu:</label>
+    <select formControlName="game_id" class="block appearance-none w-full bg-white border border-gray-200 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+      <option
+value="" disabled>Sélectionnez un jeu</option>
+<option *ngFor="let game of games" [value]="game.id">{{ game.name }}</option>
+</select>
+<div *ngIf="adForm.get('game_id')?.touched && adForm.get('game_id')?.errors" class="text-red-500 text-xs italic">
+<div *ngIf="adForm.get('game_id')?.errors?.['required']">Le choix du jeu est requis.</div>
+</div>
+
+  </div>
+  <div class="mb-4">
+    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+    <textarea formControlName="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+    <div *ngIf="adForm.get('description')?.touched && adForm.get('description')?.errors" class="text-red-500 text-xs italic">
+      <div *ngIf="adForm.get('description')?.errors?.['required']">Une description est requise.</div>
     </div>
-  
-    <div>
-        <label for="start_date">Date de début:</label>
-        <input type="datetime-local" formControlName="start_date">
-        <div *ngIf="adForm.get('start_date')?.touched && adForm.get('start_date')?.errors">
-          <div *ngIf="adForm.get('start_date')?.errors?.['required']">La date de début est requise.</div>
-        </div>
-      </div>
-      
-      <div>
-        <label for="end_date">Date de fin:</label>
-        <input type="datetime-local" formControlName="end_date">
-        <div *ngIf="adForm.get('end_date')?.touched && adForm.get('end_date')?.errors">
-          <div *ngIf="adForm.get('end_date')?.errors?.['required']">La date de fin est requise.</div>
-        </div>
-      </div>
-      
-  
-    <button type="submit">Créer l'annonce</button>
-  
-    <div *ngIf="message" [class.error]="isError">
-      {{ message }}
+  </div>
+  <div class="mb-4">
+    <label for="start_date" class="block text-gray-700 text-sm font-bold mb-2">Date de début:</label>
+    <input type="datetime-local" formControlName="start_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    <div *ngIf="adForm.get('start_date')?.touched && adForm.get('start_date')?.errors" class="text-red-500 text-xs italic">
+      <div *ngIf="adForm.get('start_date')?.errors?.['required']">La date de début est requise.</div>
     </div>
-  </form>
-  
+  </div>
+  <div class="mb-6">
+    <label for="end_date" class="block text-gray-700 text-sm font-bold mb-2">Date de fin:</label>
+    <input type="datetime-local" formControlName="end_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    <div *ngIf="adForm.get('end_date')?.touched && adForm.get('end_date')?.errors" class="text-red-500 text-xs italic">
+      <div *ngIf="adForm.get('end_date')?.errors?.['required']">La date de fin est requise.</div>
+    </div>
+  </div>
+<button type="submit" class="
+
+bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer l'annonce</button>
+
+  <div *ngIf="message" [class.error]="isError" class="mt-4 text-center text-red-500">
+    {{ message }}
+  </div>
+</form>
