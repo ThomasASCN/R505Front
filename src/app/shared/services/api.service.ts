@@ -231,5 +231,13 @@ deleteAd(adId: number): Observable<any> {
       })
   });
 }
- 
+// récupérer les informations du profil
+getProfile(): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+  return this.http.get<any>(`${this.apiUrl}/profile`, { headers });
+}
+
+
 }
