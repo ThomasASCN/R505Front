@@ -1,4 +1,3 @@
-// Dans votre composant menu.component.ts
 import { Component } from '@angular/core';
 import { ApiService } from '../../shared/services/api.service';
 import { Router } from '@angular/router';
@@ -10,8 +9,6 @@ import { Router } from '@angular/router';
 })
 
 export class MenuComponent {
-
-
 
   constructor(private apiService: ApiService, private router: Router) {}
   navigateTo(route: string) {

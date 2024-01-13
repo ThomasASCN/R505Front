@@ -238,6 +238,27 @@ getProfile(): Observable<any> {
   });
   return this.http.get<any>(`${this.apiUrl}/profile`, { headers });
 }
+// mettre le nom d'user a jour
+updateProfile(name: string): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+  return this.http.put<any>(`${this.apiUrl}/updateProfile`, { name }, { headers });
+}
+// changer le mdp a jour
+updatePassword(password: string): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+  return this.http.put<any>(`${this.apiUrl}/updatePassword`, { password }, { headers });
+}
 
+getCurrentUser(): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token
+  });
+
+  return this.http.get<any>(`${this.apiUrl}/user`, { headers: headers });
+}
 
 }
