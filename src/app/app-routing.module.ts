@@ -13,14 +13,14 @@ import { MenuComponent } from './pages/menu/menu.component';
 
 
 const routes: Routes = [
-{ path :'', component: InscriptionComponent},
+{ path :'inscription', component: InscriptionComponent},
 { path: 'login', component: LoginComponent},
 { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },
 { path: 'ticket', component: TicketComponent, canActivate: [AuthGuard]},
 { path: 'tickets', component: TicketPageComponent, canActivate: [AuthGuard]},
 { path: 'mytickets', component: MyTicketsComponent, canActivate: [AuthGuard]}, 
 { path: 'menu', component: MenuComponent},
-{ path: 'accueil', component: AccueilComponent},
+{ path: '', component: AccueilComponent},
 
 
 ];
