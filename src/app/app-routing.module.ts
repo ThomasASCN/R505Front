@@ -9,6 +9,7 @@ import { TicketComponent } from './pages/ticket/ticket.component';
 import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
 import { MyTicketsComponent } from './pages/my-tickets/my-tickets.component';
 import { MenuComponent } from './pages/menu/menu.component';
+import { AvisComponent } from './pages/avis/avis.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
 { path: 'mytickets', component: MyTicketsComponent, canActivate: [AuthGuard]}, 
 { path: 'menu', component: MenuComponent},
 { path: '', component: AccueilComponent},
+{ path: 'avis', component: AvisComponent}
 
 
 ];

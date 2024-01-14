@@ -21,6 +21,7 @@ export class ApiService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    
   ) {
     this.init();
   }
@@ -259,6 +260,36 @@ getCurrentUser(): Observable<any> {
   });
 
   return this.http.get<any>(`${this.apiUrl}/user`, { headers: headers });
+}
+// poster un avis
+postReview(reviewData: any): Observable<any> {
+  const headers = new HttpHeaders({
+    'Authorization': 'Bearer ' + this.token,
+    'Content-Type': 'application/json'
+  });
+  return this.http.post<any>(`${this.apiUrl}/reviews`, reviewData, { headers });
+}
+// Récupéreer un avis
+  getUserReviews(userId: number) {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+    });
+    return this.http.get(`/api/users/${userId}/reviews`);
+    
+  }
+// récuperer les users
+  getUsers(): Observable<any[]> {
+    const headers = new HttpHeaders({
+        'Authorization': 'Bearer ' + this.token
+    });
+    return this.http.get<any[]>(`${this.apiUrl}/users`, { headers });
+}
+// récupérer tous les avis
+getAllReviews(): Observable<any[]> {
+  const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.token
+  });
+  return this.http.get<any[]>(`${this.apiUrl}/reviews`, { headers });
 }
 
 }

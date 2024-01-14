@@ -15,6 +15,7 @@ import { TicketPageComponent } from './pages/ticket-page/ticket-page.component';
 import { MyTicketsComponent } from './pages/my-tickets/my-tickets.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { AvisComponent } from './pages/avis/avis.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FooterComponent } from './pages/footer/footer.component';
     TicketPageComponent,
     MyTicketsComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    AvisComponent
   
   ],
   imports: [
