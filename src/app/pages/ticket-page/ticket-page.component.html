@@ -1,4 +1,5 @@
 <app-menu></app-menu>
+<br>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     <div *ngFor="let ad of ads" class="bg-white rounded-lg shadow-md p-4">
       <h3 class="text-lg font-semibold">{{ ad.title }}</h3>
@@ -10,4 +11,5 @@
       <button (click)="validateAd(ad.id)" class="btn-validate">Valider l'annonce</button>
     </div>
   </div>
-  
+  <br>
+  <app-footer></app-footer>
