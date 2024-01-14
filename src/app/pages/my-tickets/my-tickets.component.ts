@@ -34,6 +34,9 @@ unvalidateAd(adId: number) {
   this.apiService.unvalidateAd(adId).subscribe({
     next: (response) => {
       console.log(response.message);
+
+
+      this.acceptedAds = this.acceptedAds.filter(ad => ad.id !== adId);
     },
     error: (err) => {
       console.error('Erreur lors de la suppression de la validation:', err);
@@ -43,10 +46,17 @@ unvalidateAd(adId: number) {
 
 
 finalizeAdValidation(adId: number, isValid: boolean) {
-  
   this.apiService.finalizeAdValidation(adId, isValid).subscribe({
     next: (response) => {
       console.log(response.message);
+
+      if (isValid) {
+        const validatedAd = this.postedAds.find(ad => ad.id === adId);
+        this.postedAds = this.postedAds.filter(ad => ad.id !== adId);
+        if (validatedAd) {
+          this.doubleValidatedAds.push(validatedAd);
+        }
+      }
     },
     error: (err) => {
       console.error('Erreur lors de la validation de l\'annonce:', err);
@@ -55,31 +65,32 @@ finalizeAdValidation(adId: number, isValid: boolean) {
 }
 
 
+
 removeDoubleValidation(adId: number) {
   this.apiService.unfinalizeAdValidation(adId).subscribe({
     next: response => {
-
       console.log(response.message);
- 
+
+      this.doubleValidatedAds = this.doubleValidatedAds.filter(ad => ad.id !== adId);
+
     },
     error: error => {
-   
-      console.error(error);
+      console.error('Erreur lors de la suppresion du rendez-vous',error);
     }
   });
 }
 
+
 deleteAd(adId: number) {
   this.apiService.deleteAd(adId).subscribe({
-      next: response => {
-          console.log(response.message);
-     
-      },
-      error: error => {
-          console.error('Erreur lors de la suppression de l\'annonce', error);
-      }
+    next: response => {
+      console.log(response.message);
+            this.postedAds = this.postedAds.filter(ad => ad.id !== adId);
+    },
+    error: error => {
+      console.error('Erreur lors de la suppression de l\'annonce', error);
+    }
   });
+
 }
-
-
 }
