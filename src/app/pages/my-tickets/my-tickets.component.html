@@ -53,6 +53,7 @@
     <p class="text-sm text-gray-600 mb-1">Description: {{ ad.description }}</p>
     <p class="text-sm text-gray-600 mb-1">Date de début: {{ ad.start_date | date: 'medium' }}</p>
     <p class="text-sm text-gray-600 mb-1">Date de fin: {{ ad.end_date | date: 'medium' }}</p>
+    <p class="text-sm text-gray-600 mb-1">Créateur: {{ ad.user?.name }}</p>
     <button (click)="removeDoubleValidation(ad.id)" class="bg-yellow-500 text-white rounded px-4 py-2 mt-2 hover:bg-yellow-600 transition-colors duration-300">Supprimer la Double Validation</button>
   </div>
 </div>
